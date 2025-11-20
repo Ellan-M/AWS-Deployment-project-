@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+      <html>
+      <head>
+          <title>NGINX Server - {{ inventory_hostname }}</title>
+          <style>
+              body {
+                  font-family: Arial, sans-serif;
+                  text-align: center;
+                  margin-top: 100px;
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                  color: white;
+                  min-height: 100vh;
+              }
+              .container {
+                  background: rgba(255, 255, 255, 0.1);
+                  padding: 50px;
+                  border-radius: 20px;
+                  backdrop-filter: blur(10px);
+                  max-width: 600px;
+                  margin: 0 auto;
+                  }
+              h1 { font-size: 48px; margin-bottom: 20px; }
+              p { font-size: 24px; }
+              .server-info {
+                  background: rgba(0, 0, 0, 0.2);
+                  padding: 20px;
+                  border-radius: 10px;
+                  margin-top: 30px;
+              }
+          </style>
+      </head>
+      <body>
+          <div class="container">
+              <h1>Welcome to NGINX!</h1>
+              <p>Deployed with Ansible Automation</p>
+              <div class="server-info">
+                  <p><strong>Server:</strong> {{ inventory_hostname }}</p>
+                  <p><strong>IP:</strong> {{ ansible_default_ipv4.address }}</p>
+              </div>
+          </div>
+      </body>
+      </html>

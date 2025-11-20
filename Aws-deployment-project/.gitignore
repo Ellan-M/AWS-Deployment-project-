@@ -1,0 +1,3 @@
+nginx-webserver-key.pem
+*.pem
+__pycache__/

@@ -1,0 +1,41 @@
+tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install NGINX
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start NGINX service
+      systemd:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Deploy custom index.html
+      copy:
+        content: "{{ html_content }}"
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: Restart NGINX to apply changes
+      systemd:
+        name: nginx
+        state: restarted
+
+    - name: Ensure NGINX is running
+      systemd:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Wait for NGINX to be ready
+      wait_for:
+        port: 80
+        delay: 2
+        timeout: 30
